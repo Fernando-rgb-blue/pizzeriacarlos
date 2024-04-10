@@ -8,7 +8,7 @@ if (!process.env.MONGO_URL) {
 const uri = process.env.MONGO_URL
 const options = {}
 
-let client
+let client;
 let clientPromise;
 
 if (process.env.NODE_ENV === "development") {

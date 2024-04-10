@@ -3,34 +3,57 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function profilePage() {
     const session = useSession();
     const [userName, setUserName] = useState('');
-    const [saved, setSaved] = useState(false);
-    const [isSaving, setIsSaving] = useState(false);
+    const [image, setImage] = useState('');
+    const [phone, setPhone] = useState('');
+    const [streetAddress, setStreetAddress] = useState('');
+    const [city, setCity] = useState('');
     const {status} = session;
     
     useEffect(() => {
         if (status === 'authenticated') {
             setUserName(session.data.user.name);
+            setImage(session.data.user.image);
+            fetch('/api/profile').then(response => {
+                response.json().then(data => {
+                    setPhone(data.phone);
+                    setStreetAddress(data.streetAddress);
+                    setCity(data.city);
+                })
+            });
         }
     }, [session, status]);
 
     async function handleProfileInfoUpdate(ev) {
         ev.preventDefault();
-        setSaved(false);
-        setIsSaving(true);
-        const response = await fetch('/api/profile', {
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name:userName}),
+
+        const savingPromise = new Promise(async (resolve, reject) => {
+            const response = await fetch('/api/profile', {
+                method: 'PUT',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    name:userName,
+                    image,
+                    streetAddress,
+                    phone,
+                    city,
+                }),
+            });
+            if (response.ok)
+                resolve();
+            else
+                reject();
         });
 
-        setIsSaving(false);
-        if (response.ok) {
-            setSaved(true);
-        }
+        await toast.promise(savingPromise, {
+            loading: 'Guardando...',
+            success: 'Perfil guardado',
+            error: 'Error',
+        })
     }
 
     async function handleFileChange(ev) {
@@ -38,9 +61,24 @@ export default function profilePage() {
         if (files?.length === 1) {
             const data = new FormData;
             data.set('file', files[0]);
-            await fetch('/api/upload', {
+            
+            
+            const uploadPromise = fetch('/api/upload', {
                 method: 'POST',
-                body: data,
+                body: 'data',
+            }).then(response => {
+                if (response.ok) {
+                    return response.json().then(link => {
+                        setImage(link);
+                    })
+                }
+                throw new Error('Algo salió mal');
+            });
+
+            await toast.promise(uploadPromise, {
+                loading: 'Subiendo...',
+                success: 'Subida completa',
+                error: 'Error de subida',
             });
         }
     }
@@ -61,19 +99,9 @@ export default function profilePage() {
                 Perfil
             </h1>
             <div className="max-w-md mx-auto">
-                {saved && (
-                    <h2 className="text-center bg-green-100 p-4 rounded-lg border border-green-300">
-                        Perfil guardado
-                    </h2>
-                )}
-                {isSaving && (
-                    <h2 className="text-center bg-blue-100 p-4 rounded-lg border border-blue-300">
-                        Guardando...
-                    </h2>
-                )}
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-2">
                     <div>
-                        <div className="p-2 rounded-lg relative">
+                        <div className="p-2 rounded-lg relative max-w-xs">
                             <Image className="rounded-lg w-full h-full mb-1" src={userImage} width={250} height={250} alt={'avatar'} />
                             <label>
                                 <input type="file" className="hidden" onChange={handleFileChange}/>
@@ -84,9 +112,42 @@ export default function profilePage() {
                         </div>
                     </div>
                     <form className="grow" onSubmit={handleProfileInfoUpdate}>
-                        <input type="text" placeholder="Nombre y apellidos" 
-                            value={userName} onChange={ev => setUserName(ev.target.value)}/>
-                        <input type="email" disabled={true} value={session.data.user.email}/>
+                        <label>
+                            Nombres y apellidos
+                        </label>
+                        <input
+                            type="text" placeholder="Nombre y apellidos" 
+                            value={userName} onChange={ev => setUserName(ev.target.value)}
+                        />
+                        <label>
+                            Correo
+                        </label>
+                        <input
+                            type="email" disabled={true}
+                            value={session.data.user.email}
+                            placeholder={'email'}
+                        />
+                        <label>
+                            Teléfono
+                        </label>
+                        <input
+                            type="tel" placeholder= "Telefono"
+                            value={phone} onChange={ev => setPhone(ev.target.value)}
+                        />
+                        <label>
+                            Dirección
+                        </label>
+                        <input
+                            type="text" placeholder= "Dirección"
+                            value={streetAddress} onChange={ev => setStreetAddress(ev.target.value)}
+                        />
+                        <label>
+                            Ciudad
+                        </label>
+                        <input
+                            type="text" placeholder= "Ciudad"
+                            value={city} onChange={ev => setCity(ev.target.value)}
+                        />
                         <button type="submit">
                             Guardar
                         </button>
