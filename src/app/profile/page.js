@@ -1,28 +1,35 @@
 'use client';
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { redirect } from "next/navigation";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import UserTabs from "@/components/layout/UserTabs"
+import EditableImage from "@/components/layout/EditableImage"
 
 export default function profilePage() {
     const session = useSession();
     const [userName, setUserName] = useState('');
     const [image, setImage] = useState('');
-    const [phone, setPhone] = useState('');
     const [streetAddress, setStreetAddress] = useState('');
+    const [phone, setPhone] = useState('');
     const [city, setCity] = useState('');
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [profileFetched, setProfileFetched] = useState(false);
     const {status} = session;
     
     useEffect(() => {
         if (status === 'authenticated') {
-            setUserName(session.data.user.name);
-            setImage(session.data.user.image);
+            // setUserName(session.data.user.name);
+            // setImage(session.data.user.image);
             fetch('/api/profile').then(response => {
                 response.json().then(data => {
+                    setUserName(data.name);
+                    setImage(data.image)
                     setPhone(data.phone);
                     setStreetAddress(data.streetAddress);
                     setCity(data.city);
+                    setIsAdmin(data.admin);
+                    setProfileFetched(true);
                 })
             });
         }
@@ -38,8 +45,8 @@ export default function profilePage() {
                 body: JSON.stringify({
                     name:userName,
                     image,
-                    streetAddress,
                     phone,
+                    streetAddress,
                     city,
                 }),
             });
@@ -56,59 +63,22 @@ export default function profilePage() {
         })
     }
 
-    async function handleFileChange(ev) {
-        const files = ev.target.files;
-        if (files?.length === 1) {
-            const data = new FormData;
-            data.set('file', files[0]);
-            
-            
-            const uploadPromise = fetch('/api/upload', {
-                method: 'POST',
-                body: 'data',
-            }).then(response => {
-                if (response.ok) {
-                    return response.json().then(link => {
-                        setImage(link);
-                    })
-                }
-                throw new Error('Algo salió mal');
-            });
-
-            await toast.promise(uploadPromise, {
-                loading: 'Subiendo...',
-                success: 'Subida completa',
-                error: 'Error de subida',
-            });
-        }
-    }
-
-    if (status === 'loading') {
-        return 'Loading...';
+    if (status === 'loading' || !profileFetched) {
+        return 'Cargando datos de usuario...';
     }
 
     if (status === 'unauthenticated') {
         return redirect('/login');
     }
 
-    const userImage = session.data.user.image;
-
     return (
         <section className="mt-8">
-            <h1 className="text-center text-primary text-4xl mb-4">
-                Perfil
-            </h1>
-            <div className="max-w-md mx-auto">
-                <div className="flex gap-2">
+            <UserTabs isAdmin={isAdmin} />
+            <div className="max-w-md mx-auto mt-8">
+                <div className="flex gap-4">
                     <div>
-                        <div className="p-2 rounded-lg relative max-w-xs">
-                            <Image className="rounded-lg w-full h-full mb-1" src={userImage} width={250} height={250} alt={'avatar'} />
-                            <label>
-                                <input type="file" className="hidden" onChange={handleFileChange}/>
-                                <span className="block border border-gray-300 rounded-lg p-2 text-center font-bold cursor-pointer">
-                                    Editar
-                                </span>
-                            </label>
+                        <div className="p-2 rounded-lg relative max-w-[120px]">
+                            <EditableImage link={image} setLink={setImage}/>
                         </div>
                     </div>
                     <form className="grow" onSubmit={handleProfileInfoUpdate}>
