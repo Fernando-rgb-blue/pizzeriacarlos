@@ -30,7 +30,14 @@ export default function LoginPage() {
                 <div className="my-4 text-center text-gray-500">
                     o continúe con
                 </div>
-                <button type="button" onClick={() => signIn('google', {callbackUrl:'/'})} className="flex gap-4 justify-center">
+                <button 
+                    type="button"
+                    disabled={loginInProgress}
+                    onClick={() => {
+                        signIn('google', {callbackUrl:'/'});
+                        setLoginInProgress(true);
+                    }}
+                    className="flex gap-4 justify-center">
                     <Image src={'/google.png'} alt={''}
                     width={24} height={24} />
                     Ingresa con Google

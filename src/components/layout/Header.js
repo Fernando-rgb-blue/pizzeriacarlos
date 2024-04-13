@@ -29,7 +29,7 @@ export default function Header() {
                 Hola, {userName}
               </Link>
               <button
-                onClick = {() => signOut()}
+                onClick = {() => {signOut({callbackUrl: '/', redirect: true})}}
                 className="bg-primary rounded-full text-white px-8 py-2">
                 Cerrar sesión
               </button>
