@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EditableImage from "@/components/layout/EditableImage"
 import useProfile from "@/components/UseProfile";
+import AddressInputs from "@/components/layout/AddressInputs";
 
 export default function UserForm({user, onSave}) {
     const [userName, setUserName] = useState(user?.name || '');
@@ -10,6 +11,13 @@ export default function UserForm({user, onSave}) {
     const [city, setCity] = useState(user?.city || '');
     const [admin, setAdmin] = useState(user?.admin || false);
     const {data:loggedInUserData} = useProfile();
+
+    function handleAddressChange(propName, value) {
+        if (propName === 'phone') setPhone(value);
+        if (propName === 'streetAddress') setStreetAddress(value);
+        if (propName === 'city') setCity(value);
+    }
+
     return (
         <div className="flex gap-4">
             <div>
@@ -37,26 +45,9 @@ export default function UserForm({user, onSave}) {
                     value={user?.email}
                     placeholder={'email'}
                 />
-                <label>
-                    Teléfono
-                </label>
-                <input
-                    type="tel" placeholder= "Telefono"
-                    value={phone} onChange={ev => setPhone(ev.target.value)}
-                />
-                <label>
-                    Dirección
-                </label>
-                <input
-                    type="text" placeholder= "Dirección"
-                    value={streetAddress} onChange={ev => setStreetAddress(ev.target.value)}
-                />
-                <label>
-                    Ciudad
-                </label>
-                <input
-                    type="text" placeholder= "Ciudad"
-                    value={city} onChange={ev => setCity(ev.target.value)}
+                <AddressInputs
+                    addressProps={{phone, streetAddress, city}}
+                    setAddressProp={handleAddressChange}
                 />
                 {loggedInUserData.admin && (
                     <div>

@@ -1,6 +1,9 @@
 "use client";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useContext } from "react";
+import { CartContext } from "../AppContext";
+import ShoppingCart from "@/components/icons/ShoppingCart";
 
 export default function Header() {
     const session = useSession();
@@ -8,6 +11,7 @@ export default function Header() {
     const status = session?.status;
     const userData = session.data?.user;
     let userName = userData?.name || userData?.email;
+    const {cartProducts} = useContext(CartContext);
     if (userName && userName.includes(' ')) {
       userName = userName.split(' ')[0];
     }
@@ -18,9 +22,9 @@ export default function Header() {
             PIZZERÍA CARLO'S
           </Link>
           <Link href={'/'}>Inicio</Link>
-          <Link href={''}>Menú</Link>
-          <Link href={''}>Nosotros</Link>
-          <Link href={''}>Contactos</Link>
+          <Link href={'menu'}>Menú</Link>
+          <Link href={'/#about'}>Nosotros</Link>
+          <Link href={'/#contact'}>Contactos</Link>
         </nav>
         <nav className="flex items-center gap-8 text-gray-500 font-semibold ml-1">
           {status === 'authenticated' && (
@@ -31,7 +35,7 @@ export default function Header() {
               <button
                 onClick = {() => {signOut({callbackUrl: '/', redirect: true})}}
                 className="bg-primary rounded-full text-white px-8 py-2">
-                Cerrar sesión
+                Cerrar&nbsp;sesión
               </button>
             </>
           )}
@@ -44,6 +48,12 @@ export default function Header() {
               </Link>
             </>
           )}
+          <Link href={'/cart'} className="relative">
+            <ShoppingCart />
+            <span className="absolute -top-2 -right-4 bg-primary text-white text-xs p-1 rounded-full leading-3">
+              {cartProducts.length}
+            </span>
+          </Link>
         </nav>
       </header>
     );
