@@ -58,3 +58,11 @@ div.tabs > *.active{
 .flying-button-parent button{
     @apply border-primary bg-primary text-white rounded-full;
 }
+
+.subtitle{
+    @apply text-primary uppercase tracking-wide font-semibold text-3xl md:text-4xl;
+}
+
+.title{
+    @apply  text-2xl md:text-3xl md:leading-snug font-bold my-2;
+}

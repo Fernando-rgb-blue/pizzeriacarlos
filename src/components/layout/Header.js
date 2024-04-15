@@ -71,20 +71,20 @@ export default function Header() {
             className="md:hidden p-4 bg-gray-200 rounded-lg mt-2 flex flex-col gap-2 text-center">
             <Link href={'/'}>Inicio</Link>
             <Link href={'menu'}>Menú</Link>
-            <Link href={'/#about'}>Nosotros</Link>
-            <Link href={'/#contact'}>Contactos</Link>
+            <Link href={'/about'}>Nosotros</Link>
+            <Link href={'/contact'}>Contactos</Link>
             <AuthLinks status={status} userName={userName} />
           </div>
         )}
         <div className="hidden md:flex items-center justify-between">
           <nav className="flex items-center gap-8 text-gray-500 font-semibold mr-1">
             <Link className="text-primary font-semibold text-2xl" href={'/'}>
-              PIZZERÍA CARLO'S
+              PIZZA CARLO'S
             </Link>
             <Link href={'/'}>Inicio</Link>
             <Link href={'menu'}>Menú</Link>
-            <Link href={'/#about'}>Nosotros</Link>
-            <Link href={'/#contact'}>Contactos</Link>
+            <Link href={'/about'}>Nosotros</Link>
+            <Link href={'/contact'}>Contactos</Link>
           </nav>
           <nav className="flex items-center gap-8 text-gray-500 font-semibold ml-1">
             <AuthLinks status={status} userName={userName} />
