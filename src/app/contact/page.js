@@ -19,7 +19,7 @@ export default function ContactPage() {
         {/* contactanos */}
         <section className="text-center mt-8 mb-7" id="contact">
             <SectionHeaders
-            subHeader={'Danos tu opinion'}
+            subHeader={'Danos tu opinión'}
             mainHeader={'Contáctanos'}
             />
         

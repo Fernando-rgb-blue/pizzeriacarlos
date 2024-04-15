@@ -23,7 +23,7 @@ export default function Hero() {
                         <Right />
                     </button>
                     <button className="flex items-center border-0 gap-2 py-2 text-gray-600 font-semibold">
-                        Aprenda más
+                        Aprenda&nbsp;más
                         <Right />
                     </button>
                 </div>
