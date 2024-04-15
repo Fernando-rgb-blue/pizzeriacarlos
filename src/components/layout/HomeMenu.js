@@ -30,9 +30,9 @@ export default function HomeMenu() {
                     subHeader={'Echa un vistazo a'}
                     mainHeader={'Los mejores del día'} />
             </div>
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-3 gap-4">
                 {bestSellers?.length > 0 && bestSellers.map(item => (
-                    <MenuItem {...item} />
+                    <MenuItem key={item._id} {...item} />
                 )) }
             </div>
         </section>

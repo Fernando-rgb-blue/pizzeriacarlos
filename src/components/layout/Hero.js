@@ -3,8 +3,8 @@ import Right from "@/components/icons/Right"
 
 export default function Hero() {
     return (
-        <section className="hero mt-4">
-            <div className="py-10 md:py-20">
+        <section className="hero md:mt-4">
+            <div className="py-8 md:py-20">
                 <h1 className="text-4xl font-semibold">
                     Todo es<br />
                     mucho mejor<br />
@@ -28,7 +28,7 @@ export default function Hero() {
                     </button>
                 </div>
             </div>
-            <div className="relative">
+            <div className="relative hidden md:block">
                 <Image src={'/pizza.png'} layout={'fill'}
                 objectFit={'contain'} alt={'pizza'} />
             </div>

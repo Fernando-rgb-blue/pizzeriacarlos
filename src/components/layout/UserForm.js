@@ -19,9 +19,9 @@ export default function UserForm({user, onSave}) {
     }
 
     return (
-        <div className="flex gap-4">
+        <div className="md:flex gap-4">
             <div>
-                <div className="p-2 rounded-lg relative max-w-[120px]">
+                <div className="p-2 rounded-lg mx-auto md:relative max-w-[120px]">
                     <EditableImage link={image} setLink={setImage}/>
                 </div>
             </div>
@@ -57,7 +57,7 @@ export default function UserForm({user, onSave}) {
                             <input
                                 id="adminCb" type="checkbox" className="" value={'1'}
                                 checked={admin}
-                                onClick={ev => setAdmin(ev.target.checked)}
+                                onChange={ev => setAdmin(ev.target.checked)}
                             />
                             <span>
                                 Admin
