@@ -7,7 +7,7 @@ import { Toaster } from "react-hot-toast";
 const roboto = Roboto({ subsets: ["latin"], weight: ['400', '500', '700'] });
 
 export const metadata = {
-  title: "Pizzería Carlo's",
+  title: "PIZZA Carlo's",
   description: "Generado por medio de next app",
 };
 
