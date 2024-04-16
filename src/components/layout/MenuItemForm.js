@@ -17,6 +17,9 @@ export default function MenuItemForm({onSubmit, menuItem}) {
         fetch('/api/categories').then(res => {
             res.json().then(categories => {
                 setCategories(categories);
+                if (!menuItem) {
+                    setCategory(categories?.length > 0 ? categories[0]._id : '');
+                }
             });
         });
     }, []);
