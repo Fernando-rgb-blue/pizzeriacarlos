@@ -2,6 +2,7 @@ export default function AddressInputs({addressProps, setAddressProp, disabled=fa
     const {phone, streetAddress, city} = addressProps;
     return (
         <>
+        
             <label>
                 Teléfono
             </label>
@@ -19,7 +20,7 @@ export default function AddressInputs({addressProps, setAddressProp, disabled=fa
                 value={streetAddress || ''} onChange={ev => setAddressProp('streetAddress', ev.target.value)}
             />
             <label>
-                Ciudad
+                Referencia
             </label>
             <input
                 disabled={disabled}

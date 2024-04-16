@@ -19,7 +19,7 @@ export default function ServicesPage() {
     return (
     <>
 
-        <div className="section-container my-16">
+        <div className="section-container mb-16" style={{ marginTop: "95px" }}>
             <div className="flex flex-col md:flex-row items-center justify-between gap-12">
                 <div className="md:w-1/2">
                 <div className="text-left md:w-4/5">
@@ -28,7 +28,8 @@ export default function ServicesPage() {
                     <p className="my-5 text-secondary leading-[30px]">
                         Arraigados en la pasión por la pizza, 
                         creamos experiencias gastronómicas memorables y brindamos un servicio 
-                        excepcional, combinando la maestría culinaria con una hospitalidad acogedora.
+                        excepcional, combinando la maestría culinaria con una hospitalidad acogedora. <br />
+                        Nuestros ingredientes frescos son la sinfonía perfecta que dan vida a nuestras pizzas, una melodía de deliciosos sabores.
                     </p>
 
                     <a href={'/register'} style={{ width: 'fit-content'}} className="bg-primary font-semibold text-white px-8 py-3 rounded-full ">

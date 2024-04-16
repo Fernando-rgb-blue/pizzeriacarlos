@@ -51,7 +51,7 @@ export default function MenuItem(menuItem) {
         <>
             {showPopup && (
                 <div
-                    onClick={() => setShowPopup(false)}
+                    onClick={() => setShowPopup(false)} style={{ zIndex: '103' }}
                     className="fixed inset-0 bg-black/60 flex items-center justify-center">
                     <div
                         onClick={ev => ev.stopPropagation()}
@@ -118,7 +118,7 @@ export default function MenuItem(menuItem) {
                             </FlyingButton>
                             <button
                                 type="button"
-                                className="mt-2"
+                                className="mt-2 bg-red-600 text-white font-bold"
                                 onClick={() => setShowPopup(false)}>
                                 Cancelar
                             </button>

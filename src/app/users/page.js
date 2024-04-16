@@ -4,6 +4,7 @@ import UserTabs from "@/components/layout/UserTabs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+
 export default function UsersPage() {
     const [users, setUsers] = useState([]);
     const {loading, data} = useProfile();
@@ -25,7 +26,8 @@ export default function UsersPage() {
     }
 
     return (
-        <section className="max-w-2xl mx-auto mt-8">
+        <>
+            <section className="max-w-2xl mx-auto mt-8">
             <UserTabs isAdmin={true}/>
             <div className="mt-8">
                 {users?.length > 0 && users.map(user => (
@@ -56,5 +58,8 @@ export default function UsersPage() {
                 ))}
             </div>
         </section>
+        </>
+
+        
     );
 }

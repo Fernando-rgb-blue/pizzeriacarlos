@@ -18,8 +18,12 @@ export default function UserForm({user, onSave}) {
         if (propName === 'city') setCity(value);
     }
 
+    
     return (
-        <div className="md:flex gap-4">
+
+        <>
+
+            <div className="md:flex gap-4">
             <div>
                 <div className="p-2 rounded-lg mx-auto md:relative max-w-[120px]">
                     <EditableImage link={image} setLink={setImage}/>
@@ -70,5 +74,7 @@ export default function UserForm({user, onSave}) {
                 </button>
             </form>
         </div>
+        </>
+        
     );
 }
