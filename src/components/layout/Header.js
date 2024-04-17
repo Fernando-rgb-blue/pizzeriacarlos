@@ -49,9 +49,9 @@ export default function Header() {
       <header>
       {/* vista de cel */}
       <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: '100', backgroundColor: 'rgba(0, 0, 0, 0.6)', display: mobileNavOpen ? 'block' : 'none' }} onClick={() => setMobileNavOpen(false)}></div>
-      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: '101', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'}} className="flex items-center md:hidden justify-between bg-white p-3">
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', zIndex: '101', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'}} className="flex items-center lg:hidden justify-between bg-white p-3">
           <Link style={{ width: '70%' }} className="text-primary font-bold text-2xl" href={'/'}>
-              ST PIZZA
+              Pizza CARLO'S
           </Link>
           
           <div className="flex gap-8 items-center">
@@ -72,10 +72,10 @@ export default function Header() {
       </div>
       {mobileNavOpen && (
           <div
-            style={{ zIndex: '103' }} className="md:hidden p-4 bg-gray-200 rounded-lg mt-14 fixed top-0 left-0 w-full flex flex-col gap-2 text-center">
+            style={{ zIndex: '103' }} className="lg:hidden p-4 bg-gray-200 rounded-lg mt-14 fixed top-0 left-0 w-full flex flex-col gap-2 text-center">
               <div onClick={() => setMobileNavOpen(false)} className="flex flex-col items-center">
                   <Link href={'/'} className="m-2">Inicio</Link>
-                  <Link href={'/menu'}  className="m-2">Menu</Link>
+                  <Link href={'/menu'}  className="m-2">Menú</Link>
                   <Link href={'/about'}  className="m-2">Nosotros</Link>
                   <Link href={'/contact'} className="m-2">Contáctanos</Link>
                   <AuthLinks status={status} userName={userName} />
@@ -85,15 +85,16 @@ export default function Header() {
 
 
       {/* vista de compu */}
-      <div style={{ position: 'fixed', width: '100%', zIndex: '100', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'}} className="hidden md:flex items-center justify-between bg-white p-3">
+      <div style={{ position: 'fixed', width: '100%', zIndex: '100', boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)'}}
+        className="hidden lg:flex items-center justify-between bg-white p-3 left-0">
         
         <div style={{ width: '5%' }} ></div>
         <nav style={{ width: '65%' }}  className="flex items-center gap-8 text-gray-500 font-semibold">
           <Link className="text-primary font-bold text-2xl" href={'/'}>
-            Pz CARLO'S
+            Pizza CARLO'S
           </Link>
           <Link href={'/'}>Inicio</Link>
-          <Link href={'/menu'}>Menu</Link>
+          <Link href={'/menu'}>Menú</Link>
           <Link href={'/about'}>Nosotros</Link>
           <Link href={'/contact'}>Contáctanos</Link>
         </nav>

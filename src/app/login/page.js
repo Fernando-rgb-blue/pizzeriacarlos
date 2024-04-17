@@ -42,6 +42,9 @@ export default function LoginPage() {
                     width={24} height={24} />
                     Ingresa con Google
                 </button>
+                <div className="my-4 text-center text-gray-800 underline cursor-pointer">
+                    ¿Olvidaste tu contraseña?
+                </div>
             </form>
         </section>
     );

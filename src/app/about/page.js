@@ -36,7 +36,7 @@ export default function AboutPage() {
             <div className="w-full md:w-1/2">
                 <div className="text-left md:w-4/5">
                 <blockquote className="my-5 text-secondary leading-[30px] text-gray-500">
-                    PIZZA Carlo's es fruto de una aventura de emprendimiento familiar que empezó en el año 2015; una aventura llena de esfuerzos y sacrificios, cuyo objetivo era ofrecer un negocio de pizzería basado en un modelo de conexión con sus clientes, buscando no solo su satisfacción, sino también, momentos memorables de compartir en familia. <br />
+                    Pizza CARLO's es fruto de una aventura de emprendimiento familiar que empezó en el año 2015; una aventura llena de esfuerzos y sacrificios, cuyo objetivo era ofrecer un negocio de pizzería basado en un modelo de conexión con sus clientes, buscando no solo su satisfacción, sino también, momentos memorables de compartir en familia. <br />
                     <br /> Para ello, sus productos debían contar con insumos de primera calidad para lograr su característica principal “Una pizza suave y crocante”, la cual se cuida mantener hasta hoy.
                 </blockquote>
                 </div>

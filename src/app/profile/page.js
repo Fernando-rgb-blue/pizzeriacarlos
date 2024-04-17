@@ -43,7 +43,7 @@ export default function profilePage() {
         await toast.promise(savingPromise, {
             loading: 'Guardando...',
             success: 'Perfil guardado',
-            error: 'Error',
+            error: 'Error al guardar perfil',
         })
     }
 

@@ -41,7 +41,7 @@ export default function EditMenuItemPage() {
         await toast.promise(savingPromise, {
             loading: 'Guardando ítem para el menú...',
             success: 'Guardado',
-            error: 'Error'
+            error: 'Error al guardar'
         });
 
         setRedirectToItems(true);
@@ -61,7 +61,7 @@ export default function EditMenuItemPage() {
         await toast.promise(promise, {
             loading: 'Borrando...',
             success: 'Borrado',
-            error: 'Error'
+            error: 'Error al borrar'
         })
 
         setRedirectToItems(true);

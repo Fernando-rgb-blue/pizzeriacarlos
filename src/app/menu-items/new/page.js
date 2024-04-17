@@ -28,7 +28,7 @@ export default function NewMenuItemPage() {
         await toast.promise(savingPromise, {
             loading: 'Guardando ítem para el menú...',
             success: 'Guardado',
-            error: 'Error'
+            error: 'Error al guardar'
         });
 
         setRedirectToItems(true);

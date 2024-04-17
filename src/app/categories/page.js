@@ -46,7 +46,7 @@ export default function CategoriesPage () {
         await toast.promise(creationPromise, {
             loading: editedCategory ? 'Actualizando categoría...' : 'Creando nueva categoría...',
             success: editedCategory ? 'Categoría actualizada' : 'Categoría creada',
-            error: 'Error',
+            error: editedCategory ? 'Error al actualizar categoría' : 'Error al crear categoría',
         });
     }
 
@@ -65,7 +65,7 @@ export default function CategoriesPage () {
         await toast.promise(promise, {
             loading: 'Borrando...',
             success: 'Borrado',
-            error: 'Error'
+            error: 'Error al borrar'
         });
 
         fetchCategories();

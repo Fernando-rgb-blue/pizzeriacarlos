@@ -4,7 +4,7 @@ export default function Trash({className="w-6 h-6"}) {
             fill="none" viewBox="0 0 24 24"
             strokeWidth={1.5} stroke="currentColor"
             className={className}
-            style={{ transition: 'stroke 0.3s', cursor: 'pointer' }}
+            style={{ transition: 'stroke 0.1s', cursor: 'pointer' }}
             onMouseEnter={(e) => { e.currentTarget.setAttribute('stroke', 'red'); }}
             onMouseLeave={(e) => { e.currentTarget.setAttribute('stroke', 'currentColor'); }}
         >

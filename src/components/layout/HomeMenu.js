@@ -21,7 +21,7 @@ export default function HomeMenu() {
         <>
             <section className="">
                 <div className="absolute left-0 right-0">
-                    <div className="absolute left-0 -top-[70px] -z-10">
+                    <div className="absolute left-0 -top-[90px] -z-10">
                         <Image src={'/pizza1.png'} width={107}
                         height={262} alt={'pizza'} />
                     </div>

@@ -30,7 +30,7 @@ export default function DeleteButton({label, onDelete}) {
     }
 
     return (
-        <button className="text-red-700" type="button" onClick={() => setShowConfirm(true)}>
+        <button className="bg-red-600 text-white font-bold" type="button" onClick={() => setShowConfirm(true)}>
             {label}
         </button>
     );

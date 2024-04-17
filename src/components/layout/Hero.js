@@ -18,10 +18,12 @@ export default function Hero() {
                 </h1>
                 <p className="my-6 text-gray-500 text-1xl">
                     La pizza es la pieza faltante que nos llena cada día,
-                    un simple pero delicioso lujo para gozar.
+                    un simple pero delicioso lujo para gozar.<br />
+                    <span className="font-semibold">
+                        Atención de Lunes-Sábado de 4:00 pm - 10:00 pm
+                    </span>
                 </p>
                 <div className="flex gap-4 text-sm">
-                    
                     <a href="/menu" className="flex w-full justify-center font-semibold bg-primary uppercase items-center gap-2 text-white px-4 py-2 rounded-full">
                         Pídenos ya
                         <Right />

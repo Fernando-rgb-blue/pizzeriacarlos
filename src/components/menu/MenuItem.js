@@ -71,7 +71,7 @@ export default function MenuItem(menuItem) {
                             {sizes?.length > 0 && (
                                 <div className="py-2">
                                     <h3 className="text-center text-gray-700">
-                                        Elige el tamaño
+                                        Elige el tamaño:
                                     </h3>
                                     {sizes.map(size => (
                                         <label key={size._id} className="flex items-center gap-2 p-4 border rounded-md mb-1">
@@ -110,7 +110,7 @@ export default function MenuItem(menuItem) {
                                 src={image}
                             >
                                 <div
-                                    className="primary sticky bottom-2"
+                                    className="primary bottom-2"
                                     onClick={handleAddToCartButtonClick}
                                 >
                                     Añadir al carrito S/{selectedPrice}
